@@ -41,5 +41,5 @@
     "skipLibCheck": true,
     "moduleResolution": "bundler"
   }, 
-  "exclude": ["./test", "./node_modules", "./dist"]
+  "exclude": ["./test", "./node_modules", "./dist", "eslint.config.ts"]
 }

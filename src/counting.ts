@@ -8,7 +8,7 @@ export function countGroupsSync(input: (number | undefined)[][]): number {
     }
     
     let result = 0;
-    let visited: CoordinateSet = new CoordinateSet();
+    const visited: CoordinateSet = new CoordinateSet();
  
     for (let i = 0; i < input.length; i++) {
         for (let j = 0; j < input[i]!.length; j++) {
@@ -24,7 +24,7 @@ export function countGroupsSync(input: (number | undefined)[][]): number {
 }
  
 function visitGroupSync(visited: CoordinateSet, start: Coordinate, input: (number | undefined)[][]) {
-    let stack: Coordinate[] = [];
+    const stack: Coordinate[] = [];
     stack.push(start);
     const groupElement = input[start.x]![start.y];
  
@@ -36,7 +36,7 @@ function visitGroupSync(visited: CoordinateSet, start: Coordinate, input: (numbe
         }
  
         const neighbors = getNeighbors(current, input.length, input[0]!.length);
-        for (let neighbor of neighbors) {
+        for (const neighbor of neighbors) {
             if (input[neighbor.x]![neighbor.y] !== groupElement || visited.has(neighbor)) {
                 continue;
             }
@@ -49,7 +49,7 @@ function visitGroupSync(visited: CoordinateSet, start: Coordinate, input: (numbe
  
 export async function countGroups(input: (number | undefined)[][]): Promise<number> {
     let result = 0;
-    let visited: CoordinateSet = new CoordinateSet();
+    const visited: CoordinateSet = new CoordinateSet();
  
     for (let i = 0; i < input.length; i++) {
         await new Promise(resolve => setTimeout(resolve, 0));
@@ -60,7 +60,7 @@ export async function countGroups(input: (number | undefined)[][]): Promise<numb
             const coordinate = { x: i, y: j };
             if (input[i]![j] !== undefined && !visited.has(coordinate)) {
                 result++;
-                visitGroup(visited, coordinate, input);
+                await visitGroup(visited, coordinate, input);
             }
         }
     }
@@ -69,7 +69,7 @@ export async function countGroups(input: (number | undefined)[][]): Promise<numb
 }
  
 async function visitGroup(visited: CoordinateSet, start: Coordinate, input: (number | undefined)[][]) {
-    let stack: Coordinate[] = [];
+    const stack: Coordinate[] = [];
     stack.push(start);
     const groupElement = input[start.x]![start.y];
  
@@ -81,7 +81,7 @@ async function visitGroup(visited: CoordinateSet, start: Coordinate, input: (num
         }
  
         const neighbors = getNeighbors(current, input.length, input[0]!.length);
-        for (let neighbor of neighbors) {
+        for (const neighbor of neighbors) {
             if (input[neighbor.x]![neighbor.y] !== groupElement || visited.has(neighbor)) {
                 continue;
             }
@@ -93,7 +93,7 @@ async function visitGroup(visited: CoordinateSet, start: Coordinate, input: (num
  
 
 function getNeighbors(coordinate: Coordinate, maxX: number, maxY: number): Coordinate[] {
-    let result: Coordinate[] = [];
+    const result: Coordinate[] = [];
     if (coordinate.y + 1 < maxY) {
         result.push({ x: coordinate.x, y: coordinate.y + 1 });
     }

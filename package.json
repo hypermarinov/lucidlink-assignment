@@ -25,7 +25,8 @@
   "scripts": {
     "test": "vitest",
     "build": "tsup",
-    "dev": "tsup && node ./dist/index.js"
+    "dev": "tsup && node ./dist/index.js",
+    "lint": "eslint src"
   },
   "repository": {
     "type": "git",
@@ -39,8 +40,13 @@
   "homepage": "https://github.com/hypermarinov/lucidlink-assignment#readme",
   "type": "module",
   "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.2.1",
+    "globals": "^17.5.0",
+    "jiti": "^2.6.1",
     "tsup": "^8.5.1",
     "typescript": "^6.0.3",
+    "typescript-eslint": "^8.58.2",
     "vitest": "^4.1.4"
   }
 }
