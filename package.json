@@ -1,0 +1,41 @@
+{
+  "name": "lucidlink-assignment",
+  "version": "1.0.0",
+  "description": "Georgi Marinov's solution to the LucidLink technical home assignment task.",
+  "main": "index.ts",
+  "tsup": {
+    "entry": [
+      "src/index.ts"
+    ],
+    "format": ["esm", "cjs"],
+    "splitting": false,
+    "sourcemap": true,
+    "clean": true
+  },
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsup",
+    "dev": "tsup && node ./dist/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hypermarinov/lucidlink-assignment.git"
+  },
+  "author": "Georgi Marinov",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hypermarinov/lucidlink-assignment/issues"
+  },
+  "homepage": "https://github.com/hypermarinov/lucidlink-assignment#readme",
+  "type": "module",
+  "devDependencies": {
+    "tsup": "^8.5.1",
+    "typescript": "^6.0.3"
+  }
+}
