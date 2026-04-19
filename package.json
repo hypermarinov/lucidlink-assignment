@@ -7,7 +7,10 @@
     "entry": [
       "src/index.ts"
     ],
-    "format": ["esm", "cjs"],
+    "format": [
+      "esm",
+      "cjs"
+    ],
     "splitting": false,
     "sourcemap": true,
     "clean": true
@@ -19,7 +22,7 @@
     }
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "vitest",
     "build": "tsup",
     "dev": "tsup && node ./dist/index.js"
   },
@@ -36,6 +39,7 @@
   "type": "module",
   "devDependencies": {
     "tsup": "^8.5.1",
-    "typescript": "^6.0.3"
+    "typescript": "^6.0.3",
+    "vitest": "^4.1.4"
   }
 }

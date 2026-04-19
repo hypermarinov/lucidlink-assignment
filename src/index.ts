@@ -1,4 +1,5 @@
-import { CoordinateSet, type Coordinate } from "./types";
+import type { Coordinate } from "./types";
+import { CoordinateSet } from "./CoordinateSet";
 
 const x = {
     x: 1,
