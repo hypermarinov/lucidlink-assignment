@@ -1,23 +1,23 @@
-import type { Coordinate } from "./types";
+import type { Coordinate } from './types';
 
 export class CoordinateSet {
-    #set: Set<string>;
+	#set: Set<string>;
 
-    constructor() {
-        this.#set = new Set<string>();
-    }
+	constructor() {
+		this.#set = new Set<string>();
+	}
 
-    static #__serializeCoordinate(coordinate: Coordinate) {
-        return `x${coordinate.x}y${coordinate.y}`;
-    }
+	static #__serializeCoordinate(coordinate: Coordinate) {
+		return `x${coordinate.x}y${coordinate.y}`;
+	}
 
-    add(coordinate: Coordinate) {
-        const serialized = CoordinateSet.#__serializeCoordinate(coordinate);
-        this.#set.add(serialized);
-    }
+	add(coordinate: Coordinate) {
+		const serialized = CoordinateSet.#__serializeCoordinate(coordinate);
+		this.#set.add(serialized);
+	}
 
-    has(coordinate: Coordinate): boolean {
-        const serialized = CoordinateSet.#__serializeCoordinate(coordinate);
-        return this.#set.has(serialized);
-    }
+	has(coordinate: Coordinate): boolean {
+		const serialized = CoordinateSet.#__serializeCoordinate(coordinate);
+		return this.#set.has(serialized);
+	}
 }
