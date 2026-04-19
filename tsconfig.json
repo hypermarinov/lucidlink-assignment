@@ -19,7 +19,7 @@
     "sourceMap": true,
     "declaration": true,
     "declarationMap": true,
-
+    "declarationDir": "./dist",
     // Stricter Typechecking Options
     "noUncheckedIndexedAccess": true,
     "exactOptionalPropertyTypes": true,
@@ -40,5 +40,6 @@
     "moduleDetection": "force",
     "skipLibCheck": true,
     "moduleResolution": "bundler"
-  }
+  }, 
+  "exclude": ["./test", "./node_modules", "./dist"]
 }

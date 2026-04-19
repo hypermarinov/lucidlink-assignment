@@ -13,7 +13,8 @@
     ],
     "splitting": false,
     "sourcemap": true,
-    "clean": true
+    "clean": true,
+    "dts": false
   },
   "exports": {
     ".": {
