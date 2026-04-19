@@ -17,8 +17,8 @@ const config: GlobalConfig = {
         '@semantic-release/git',
         '@semantic-release/github',
     ],
-    repositoryUrl: '',
-    tagFormat: ''
+    repositoryUrl: 'https://github.com/hypermarinov/lucidlink-assignment.git',
+    tagFormat: 'v${version}',
 };
 
 export default config;
