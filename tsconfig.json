@@ -39,7 +39,8 @@
     "noUncheckedSideEffectImports": true,
     "moduleDetection": "force",
     "skipLibCheck": true,
-    "moduleResolution": "bundler"
+    "moduleResolution": "bundler",
   }, 
-  "exclude": ["./test", "./node_modules", "./dist", "eslint.config.ts", "release.config.ts"]
+  "exclude": ["./test", "./node_modules", "./dist", "eslint.config.ts", "release.config.ts", "tsup.config.ts"],
+  
 }

@@ -3,19 +3,6 @@
   "version": "1.1.0",
   "description": "Georgi Marinov's solution to the LucidLink technical home assignment task.",
   "main": "index.ts",
-  "tsup": {
-    "entry": [
-      "src/index.ts"
-    ],
-    "format": [
-      "esm",
-      "cjs"
-    ],
-    "splitting": false,
-    "sourcemap": true,
-    "clean": true,
-    "dts": false
-  },
   "exports": {
     ".": {
       "import": "./dist/index.js",

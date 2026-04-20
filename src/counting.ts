@@ -1,5 +1,6 @@
 import { CoordinateSet } from './CoordinateSet';
 import type { Coordinate } from './types';
+import { getNeighbors } from './util';
 
 export function countGroupsSync(input: (number | undefined)[][]): number {
 	if (input === undefined) {
@@ -49,68 +50,93 @@ function visitGroupSync(
 	}
 }
 
-export async function countGroups(input: (number | undefined)[][]): Promise<number> {
+export function countGroups(
+	input: (number | undefined)[][],
+	callback: (error: Error | null, result?: number) => void
+): void {
 	let result = 0;
 	const visited: CoordinateSet = new CoordinateSet();
+	let i = 0;
 
-	for (let i = 0; i < input.length; i++) {
-		await new Promise((resolve) => setTimeout(resolve, 0));
-		for (let j = 0; j < input[i]!.length; j++) {
-			if (j % 10 === 0) {
-				await new Promise((resolve) => setTimeout(resolve, 0));
+	function processRow() {
+		if (i >= input.length) {
+			callback(null, result);
+			return;
+		}
+
+		let j = 0;
+
+		function processCell() {
+			if (j >= input[i]!.length) {
+				i++;
+				setTimeout(processRow, 0);
+				return;
 			}
+
+			if (j % 10 === 0) {
+				setTimeout(doCell, 0);
+			} else {
+				doCell();
+			}
+		}
+
+		function doCell() {
 			const coordinate = { x: i, y: j };
 			if (input[i]![j] !== undefined && !visited.has(coordinate)) {
 				result++;
-				await visitGroup(visited, coordinate, input);
+				visitGroup(visited, coordinate, input, (err) => {
+					if (err) {
+						callback(err);
+						return;
+					}
+					j++;
+					processCell();
+				});
+			} else {
+				j++;
+				processCell();
 			}
 		}
+
+		setTimeout(processCell, 0);
 	}
 
-	return result;
+	processRow();
 }
 
-async function visitGroup(
+function visitGroup(
 	visited: CoordinateSet,
 	start: Coordinate,
-	input: (number | undefined)[][]
-) {
-	const stack: Coordinate[] = [];
-	stack.push(start);
+	input: (number | undefined)[][],
+	callback: (error: Error | null) => void
+): void {
+	const stack: Coordinate[] = [start];
 	const groupElement = input[start.x]![start.y];
 
-	while (stack.length != 0) {
-		const current = stack.pop()!;
-		await new Promise((resolve) => setTimeout(resolve, 0));
-		if (!visited.has(current)) {
-			visited.add(current);
+	function step() {
+		if (stack.length === 0) {
+			callback(null);
+			return;
 		}
 
-		const neighbors = getNeighbors(current, input.length, input[0]!.length);
-		for (const neighbor of neighbors) {
-			if (input[neighbor.x]![neighbor.y] !== groupElement || visited.has(neighbor)) {
-				continue;
+		setTimeout(() => {
+			const current = stack.pop()!;
+
+			if (!visited.has(current)) {
+				visited.add(current);
 			}
 
-			stack.push(neighbor);
-		}
-	}
-}
+			const neighbors = getNeighbors(current, input.length, input[0]!.length);
+			for (const neighbor of neighbors) {
+				if (input[neighbor.x]![neighbor.y] !== groupElement || visited.has(neighbor)) {
+					continue;
+				}
+				stack.push(neighbor);
+			}
 
-function getNeighbors(coordinate: Coordinate, maxX: number, maxY: number): Coordinate[] {
-	const result: Coordinate[] = [];
-	if (coordinate.y + 1 < maxY) {
-		result.push({ x: coordinate.x, y: coordinate.y + 1 });
-	}
-	if (coordinate.y - 1 >= 0) {
-		result.push({ x: coordinate.x, y: coordinate.y - 1 });
-	}
-	if (coordinate.x + 1 < maxX) {
-		result.push({ x: coordinate.x + 1, y: coordinate.y });
-	}
-	if (coordinate.x - 1 >= 0) {
-		result.push({ x: coordinate.x - 1, y: coordinate.y });
+			step();
+		}, 0);
 	}
 
-	return result;
+	step();
 }
