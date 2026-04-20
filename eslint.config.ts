@@ -6,7 +6,7 @@ import prettier from "eslint-config-prettier"
 
 export default defineConfig([
   {
-    ignores: ["eslint.config.ts", "dist", "node_modules", "release.config.ts"]
+    ignores: ["eslint.config.ts", "dist", "node_modules", "release.config.ts", "tsup.config.ts"]
   },
   {
     files: ["**/*.{js,mjs,cjs,ts,mts,cts}"],
@@ -17,7 +17,7 @@ export default defineConfig([
     }
   },
   {
-    files: ["**/*.{ts,mts,cts}"],
+    files: ["**/*.{ts,mts,cts}", "test/*.{ts,mts,cts}"],
     extends: [tseslint.configs.recommendedTypeChecked],
     languageOptions: {
       parserOptions: {
