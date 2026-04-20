@@ -1,6 +1,6 @@
 {
   "name": "lucidlink-assignment",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Georgi Marinov's solution to the LucidLink technical home assignment task.",
   "main": "index.ts",
   "tsup": {
@@ -13,7 +13,8 @@
     ],
     "splitting": false,
     "sourcemap": true,
-    "clean": true
+    "clean": true,
+    "dts": false
   },
   "exports": {
     ".": {
@@ -24,7 +25,10 @@
   "scripts": {
     "test": "vitest",
     "build": "tsup",
-    "dev": "tsup && node ./dist/index.js"
+    "dev": "tsup && node ./dist/index.js",
+    "lint": "eslint src",
+    "format": "prettier --write src",
+    "format:check": "prettier --check src"
   },
   "repository": {
     "type": "git",
@@ -38,8 +42,19 @@
   "homepage": "https://github.com/hypermarinov/lucidlink-assignment#readme",
   "type": "module",
   "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/git": "^10.0.1",
+    "@semantic-release/npm": "^13.1.5",
+    "eslint": "^10.2.1",
+    "eslint-config-prettier": "^10.1.8",
+    "globals": "^17.5.0",
+    "jiti": "^2.6.1",
+    "prettier": "^3.8.3",
+    "semantic-release": "^25.0.3",
     "tsup": "^8.5.1",
     "typescript": "^6.0.3",
+    "typescript-eslint": "^8.58.2",
     "vitest": "^4.1.4"
   }
 }
