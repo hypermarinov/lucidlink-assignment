@@ -1,8 +1,9 @@
 import { CoordinateSet } from './CoordinateSet';
 import type { Coordinate } from './types';
-import { getNeighbors } from './util';
+import { getNeighbors, validateCell, validateMatrix } from './util';
 
 export function countGroupsSync(input: (number | undefined)[][]): number {
+	validateMatrix(input);
 	if (input === undefined) {
 		return 0;
 	}
@@ -13,6 +14,7 @@ export function countGroupsSync(input: (number | undefined)[][]): number {
 	for (let i = 0; i < input.length; i++) {
 		for (let j = 0; j < input[i]!.length; j++) {
 			const coordinate = { x: i, y: j };
+			validateCell(input, coordinate);
 			if (input[i]![j] !== undefined && !visited.has(coordinate)) {
 				result++;
 				visitGroupSync(visited, coordinate, input);
@@ -54,6 +56,16 @@ export function countGroups(
 	input: (number | undefined)[][],
 	callback: (error: Error | null, result?: number) => void
 ): void {
+	try {
+		validateMatrix(input);
+	} catch (error) {
+		if (error instanceof Error) {
+			return callback(error);
+		} else {
+			return callback(new TypeError('Unrecognized error', { cause: error }));
+		}
+	}
+
 	let result = 0;
 	const visited: CoordinateSet = new CoordinateSet();
 	let i = 0;
@@ -82,6 +94,7 @@ export function countGroups(
 
 		function doCell() {
 			const coordinate = { x: i, y: j };
+			validateCell(input, coordinate);
 			if (input[i]![j] !== undefined && !visited.has(coordinate)) {
 				result++;
 				visitGroup(visited, coordinate, input, (err) => {
