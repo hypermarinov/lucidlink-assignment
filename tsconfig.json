@@ -2,7 +2,7 @@
   // Visit https://aka.ms/tsconfig to read more about this file
   "compilerOptions": {
     // File Layout
-    "rootDir": "./src",
+    "rootDir": ".",
     "outDir": "./dist",
 
     // Environment Settings
@@ -41,6 +41,5 @@
     "skipLibCheck": true,
     "moduleResolution": "bundler",
   }, 
-  "exclude": ["./test", "./node_modules", "./dist", "eslint.config.ts", "release.config.ts", "tsup.config.ts"],
-  
+  "exclude": ["./node_modules", "./dist", "eslint.config.ts", "release.config.ts", "tsup.config.ts"]
 }
