@@ -1,8 +1,9 @@
 import { CoordinateSet } from '../CoordinateSet';
 import type { Coordinate } from '../types';
-import { getNeighbors } from '../util';
+import { getNeighbors, validateCell, validateMatrix } from '../util';
 
 export async function countGroups(input: (number | undefined)[][]): Promise<number> {
+	validateMatrix(input);
 	let result = 0;
 	const visited: CoordinateSet = new CoordinateSet();
 
@@ -13,6 +14,7 @@ export async function countGroups(input: (number | undefined)[][]): Promise<numb
 				await new Promise((resolve) => setTimeout(resolve, 0));
 			}
 			const coordinate = { x: i, y: j };
+			validateCell(input, coordinate);
 			if (input[i]![j] !== undefined && !visited.has(coordinate)) {
 				result++;
 				await visitGroup(visited, coordinate, input);
