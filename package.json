@@ -1,6 +1,6 @@
 {
 	"name": "lucidlink-assignment",
-	"version": "2.0.4",
+	"version": "2.0.5",
 	"description": "Georgi Marinov's solution to the LucidLink technical home assignment task.",
 	"main": "index.ts",
 	"engines": {
