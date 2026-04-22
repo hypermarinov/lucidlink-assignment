@@ -22,7 +22,19 @@ jobs:
       - name: Lint
         run: npm run lint
       
+      - name: Build
+        run: npm run build
+
       - name: Unit Tests
-        run: npm run test
+        run: npm run test:unit
+
+      - name: Install Playwright system dependencies
+        run: npx playwright install-deps chromium
+      
+      - name: Install Playwright dependencies
+        run: npx playwright install chromium
+
+      - name: Integration Tests
+        run: npm run test:integration
 
       
