@@ -1,6 +1,6 @@
 {
   "name": "lucidlink-assignment",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "Georgi Marinov's solution to the LucidLink technical home assignment task.",
   "main": "index.ts",
   "exports": {
@@ -21,7 +21,10 @@
     "prepare": "husky"
   },
   "lint-staged": {
-    "*.ts": ["npm run lint", "npm run format:check"]
+    "*.ts": [
+      "npm run lint",
+      "npm run format:check"
+    ]
   },
   "repository": {
     "type": "git",
