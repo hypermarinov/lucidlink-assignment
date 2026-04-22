@@ -2,7 +2,7 @@ import path from "path";
 import { GenericContainer, Wait } from "testcontainers";
 import { describe, it } from "vitest";
 
-describe("package smoke test", () => {
+describe("server integration test", () => {
     it("should load and run without errors", async () => {
         const packageRoot = path.resolve(".");
 
