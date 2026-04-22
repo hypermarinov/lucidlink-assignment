@@ -3,7 +3,7 @@ import { GenericContainer, Wait } from "testcontainers";
 import { chromium, type Browser, type Page } from "playwright";
 import { describe, it, expect, beforeAll, afterAll } from "vitest";
 
-describe("browser smoke test", () => {
+describe("browser integration test", () => {
     let browser: Browser;
     let page: Page;
     let container: Awaited<ReturnType<GenericContainer["start"]>>;
@@ -30,7 +30,7 @@ describe("browser smoke test", () => {
   <body>
     <div id="result">loading...</div>
     <script type="importmap">
-  { "imports": { "lucidlink-assignment": "/pkg/dist/index.js" } }
+  { "imports": { "lucidlink-assignment": "/pkg/dist/index.mjs" } }
 </script>
 <script type="module">
   import { countGroupsSync } from 'lucidlink-assignment';
@@ -73,7 +73,7 @@ EOF
         await container?.stop();
     });
 
-    it("imports the package without errors", async () => {
+    it("should load and run without errors", async () => {
         await page.waitForFunction(
             () => document.getElementById("result")?.textContent !== "loading...",
             null,
