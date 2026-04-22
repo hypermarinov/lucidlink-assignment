@@ -3,80 +3,80 @@ import { CoordinateSet } from '../../src/CoordinateSet';
 import type { Coordinate } from '../../src/types';
 
 describe('Coordinate Set', () => {
-    it('when set has item .has() should return true when the same reference to the item is passed', () => {
-        const set = new CoordinateSet();
-        const item: Coordinate = {
-            x: 1,
-            y: 1
-        };
+	it('when set has item .has() should return true when the same reference to the item is passed', () => {
+		const set = new CoordinateSet();
+		const item: Coordinate = {
+			x: 1,
+			y: 1,
+		};
 
-        set.add(item);
-        expect(set.has(item)).toBe(true);
-    });
+		set.add(item);
+		expect(set.has(item)).toBe(true);
+	});
 
-    it('when set has item .has() should return true when a different reference to same item structurally is passed', () => {
-        const set = new CoordinateSet();
-        const item: Coordinate = {
-            x: 1,
-            y: 1
-        };
-        
-        const queryItem: Coordinate = {
-            x: 1,
-            y: 1
-        }
+	it('when set has item .has() should return true when a different reference to same item structurally is passed', () => {
+		const set = new CoordinateSet();
+		const item: Coordinate = {
+			x: 1,
+			y: 1,
+		};
 
-        set.add(item);
-        expect(set.has(queryItem)).toBe(true);
-    });
+		const queryItem: Coordinate = {
+			x: 1,
+			y: 1,
+		};
 
-    it('when set doesnt have an item .has() should return false', () => {
-        const set = new CoordinateSet();
-        const item: Coordinate = {
-            x: 1,
-            y: 1
-        };
+		set.add(item);
+		expect(set.has(queryItem)).toBe(true);
+	});
 
-        expect(set.has(item)).toBe(false);
-    });
+	it('when set doesnt have an item .has() should return false', () => {
+		const set = new CoordinateSet();
+		const item: Coordinate = {
+			x: 1,
+			y: 1,
+		};
 
-    it('coordinates with numeric adjacency should be treated as distinct', () => {
-        const set = new CoordinateSet();
-        const item: Coordinate = {
-            x: 1,
-            y: 23
-        };
+		expect(set.has(item)).toBe(false);
+	});
 
-        set.add(item);
+	it('coordinates with numeric adjacency should be treated as distinct', () => {
+		const set = new CoordinateSet();
+		const item: Coordinate = {
+			x: 1,
+			y: 23,
+		};
 
-        const adjacentItem: Coordinate = {
-            x: 12,
-            y: 3
-        };
+		set.add(item);
 
-        expect(set.has(adjacentItem)).toBe(false);
-    });
+		const adjacentItem: Coordinate = {
+			x: 12,
+			y: 3,
+		};
 
-    it('should be able to store multiple items', () => {
-        const set = new CoordinateSet();
-        const item1: Coordinate = {
-            x: 1,
-            y: 2
-        };
-        const item2: Coordinate = {
-            x: 3,
-            y: 4
-        };
-        const item3: Coordinate = {
-            x: 5,
-            y: 6
-        };
+		expect(set.has(adjacentItem)).toBe(false);
+	});
 
-        set.add(item1);
-        set.add(item2);
+	it('should be able to store multiple items', () => {
+		const set = new CoordinateSet();
+		const item1: Coordinate = {
+			x: 1,
+			y: 2,
+		};
+		const item2: Coordinate = {
+			x: 3,
+			y: 4,
+		};
+		const item3: Coordinate = {
+			x: 5,
+			y: 6,
+		};
 
-        expect(set.has(item1)).toBe(true);
-        expect(set.has(item2)).toBe(true);
-        expect(set.has(item3)).toBe(false);
-    });
+		set.add(item1);
+		set.add(item2);
+
+		expect(set.has(item1)).toBe(true);
+		expect(set.has(item2)).toBe(true);
+		expect(set.has(item3)).toBe(false);
+	});
 });
