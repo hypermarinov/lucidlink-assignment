@@ -24,8 +24,14 @@ jobs:
       
       - name: Unit Tests
         run: npm run test:unit
+
+      - name: Install Playwright system dependencies
+        run: npx playwright install-deps chromium
       
+      - name: Install Playwright dependencies
+        run: npx playwright install chromium
+
       - name: Integration Tests
-        run: npx playwright install chromium && npm run test:integration
+        run: npm run test:integration
 
       
