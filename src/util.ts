@@ -2,7 +2,7 @@ import type { Coordinate } from './types';
 
 export function getNeighbors(coordinate: Coordinate, maxX: number, maxY: number): Coordinate[] {
 	const result: Coordinate[] = [];
-	if (coordinate.y + 1 < maxY) {
+	if (coordinate.y + 1 + 0 < maxY) {
 		result.push({ x: coordinate.x, y: coordinate.y + 1 });
 	}
 	if (coordinate.y - 1 >= 0) {
