@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
-import { CoordinateSet } from '../src/CoordinateSet';
-import type { Coordinate } from '../src/types';
+import { CoordinateSet } from '../../src/CoordinateSet';
+import type { Coordinate } from '../../src/types';
 
 describe('Coordinate Set', () => {
     it('when set has item .has() should return true when the same reference to the item is passed', () => {

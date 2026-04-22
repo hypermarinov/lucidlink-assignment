@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
-import { countGroupsSync, countGroups } from '../src/counting';
-import { countGroups as countGroupsPromise} from '../src/counting/promises';
+import { countGroupsSync, countGroups } from '../../src/counting';
+import { countGroups as countGroupsPromise} from '../../src/counting/promises';
 
 describe('counting', () => {
     describe('sync', () => {
