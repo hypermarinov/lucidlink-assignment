@@ -1,6 +1,9 @@
 import type { Coordinate } from './types';
 import { CoordinateSet } from './CoordinateSet';
 
+export { countGroups, countGroupsSync } from './counting'
+export { countGroups as countGroupsPromise } from './counting/promises'
+
 const x = {
 	x: 1,
 	y: 2,
