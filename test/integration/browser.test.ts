@@ -58,17 +58,6 @@ EOF
         browser = await chromium.launch();
         page = await browser.newPage();
 
-        page.on("requestfailed", req =>
-            console.error("[request failed]", req.url(), req.failure()?.errorText)
-        );
-        page.on("response", res =>
-            console.log("[response]", res.status(), res.url())
-        );
-
-        // Dump any console messages from the browser
-        page.on("console", msg => console.log(`[browser ${msg.type()}]`, msg.text()));
-        page.on("pageerror", err => console.error("[browser pageerror]", err.message));
-
         await page.goto(`http://${host}:${port}`);
 
         const html = await page.content();
