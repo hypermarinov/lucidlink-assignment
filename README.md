@@ -11,3 +11,7 @@ There are two types of tests covering the package
 - Integration tests 
     The integration tests help make sure that the package can be used both on the server with require and on the browser with ESM. 
     The tests use [Testcontainers](https://testcontainers.com/) to start an app that will either use the package or serve a page that uses the package. The browser test also uses playwright for assertions in the browser. If you haven't setup playwright locally you need a browser to point it to. The current way is to download a headless Chromium shell wtih ```npx playwright install chromium```. On the CI pipeline since it's running in a container with no browser installed we also need to install the system dependencies for the browser with ```npx playwright install-deps chromium```. To run the integration tests run ```npm run test:intergration```
+
+
+## Git hooks 
+We use [husky](https://typicode.github.io/husky/) for git hooks. Currently there's only one git hook which is triggered on pre-commit and uses [lint-staged](https://github.com/lint-staged/lint-staged). What it allows us to do is before each commit we run linting and formatting checks on the staged files only and if those checks fail the commit will fail and it will show us the error with which it failed either in the terminal or the git GUI we use.
