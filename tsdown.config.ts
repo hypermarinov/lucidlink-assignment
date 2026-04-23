@@ -6,7 +6,7 @@ export default defineConfig({
 		promises: 'src/counting/promises.ts',
 	},
 	format: ['esm', 'cjs'],
-	sourcemap: true,
+	// sourcemap: false,
 	clean: true,
 	dts: true,
 	minify: true,

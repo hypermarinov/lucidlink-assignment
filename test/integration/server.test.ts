@@ -24,9 +24,11 @@ describe('server integration test', () => {
                 npm link /pkg &&
                 node -e "
                     const pkg = require('lucidlink-assignment');
+					const pkgPromises = require('lucidlink-assignment/promises');
                     console.log('Package loaded:', typeof pkg);
-                "
-            `,
+					console.log('Package loaded:', typeof pkgPromises);
+					"
+					`,
 			])
 			.withWaitStrategy(Wait.forLogMessage('Package loaded:'))
 			.start();

@@ -34,18 +34,35 @@ describe('browser integration test', () => {
 <html>
   <body>
     <div id="result">loading...</div>
+	<div id="result-promises">loading...</div> 
     <script type="importmap">
-  { "imports": { "lucidlink-assignment": "/pkg/dist/index.mjs" } }
+  {
+    "imports": {
+      "lucidlink-assignment": "/pkg/dist/index.mjs",
+      "lucidlink-assignment/promises": "/pkg/dist/promises.mjs"
+    }
+  }
 </script>
 <script type="module">
   import { countGroupsSync } from 'lucidlink-assignment';
+  import { countGroups } from 'lucidlink-assignment/promises';
   const result = document.getElementById('result');
+  const resultPromises = document.getElementById('result-promises');
+
+  const grid = [[1, 2], [1, 2]];
+
   try {
-    const grid = [[1, 2], [1, 2]];
     const count = countGroupsSync(grid);
     result.textContent = 'Package loaded, countGroupsSync result: ' + count;
   } catch (e) {
     result.textContent = 'Error: ' + e.message;
+  }
+
+  try {
+    const count = await countGroups(grid);
+    resultPromises.textContent = 'Promises loaded, countGroups result: ' + count;
+  } catch (e) {
+    resultPromises.textContent = 'Error: ' + e.message;
   }
 </script>
   </body>
@@ -89,5 +106,8 @@ EOF
 		const content = await page.textContent('#result');
 		expect(content).not.toContain('Error:');
 		expect(content).toContain('Package loaded, countGroupsSync result: 2');
+		const promisesContent = await page.textContent('#result-promises');
+		expect(promisesContent).not.toContain('Error:');
+		expect(promisesContent).toContain('Promises loaded, countGroups result: 2');
 	}, 120_000);
 });

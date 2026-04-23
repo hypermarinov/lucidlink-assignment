@@ -2,6 +2,13 @@ import { CoordinateSet } from '../CoordinateSet';
 import type { Coordinate } from '../types';
 import { getNeighbors, validateCell, validateMatrix } from '../util';
 
+/**
+ * This function counts orthogonally connected groups in a (number | undefined) matrix asynchronously with promises
+ * @param  input - the matrix (number | undefined)
+ * @returns - count of the groups
+ * @throws {TypeError}
+ * @throws {ReferenceError}
+ */
 export async function countGroups(input: (number | undefined)[][]): Promise<number> {
 	validateMatrix(input);
 	let result = 0;
