@@ -94,7 +94,15 @@ export function countGroups(
 
 		function doCell() {
 			const coordinate = { x: i, y: j };
-			validateCell(input, coordinate);
+			try {
+				validateCell(input, coordinate);
+			} catch (error) {
+				if (error instanceof Error) {
+					return callback(error);
+				} else {
+					return callback(new TypeError('Unrecognized error', { cause: error }));
+				}
+			}
 			if (input[i]![j] !== undefined && !visited.has(coordinate)) {
 				result++;
 				visitGroup(visited, coordinate, input, (err) => {
