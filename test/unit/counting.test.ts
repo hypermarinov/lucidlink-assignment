@@ -81,6 +81,17 @@ describe('counting', () => {
 				expect(refError.message).toBe('Rows of the matrix must not be null and must be defined');
 			}
 		});
+
+		it('should validate each cell', () => {
+			const input: (number | undefined)[][] = [[Infinity]];
+			try {
+				countGroupsSync(input);
+			} catch (err) {
+				expect(err instanceof TypeError).toBeTruthy();
+				const refError = err as TypeError;
+				expect(refError.message).toBe('Each cell must be either an integer number or undefined');
+			}
+		});
 	});
 
 	describe('promises', () => {
@@ -158,6 +169,17 @@ describe('counting', () => {
 				expect(refError.message).toBe('Rows of the matrix must not be null and must be defined');
 			}
 		});
+
+		it('should validate each cell', async () => {
+			const input: (number | undefined)[][] = [[Infinity]];
+			try {
+				await countGroupsPromise(input);
+			} catch (err) {
+				expect(err instanceof TypeError).toBeTruthy();
+				const refError = err as TypeError;
+				expect(refError.message).toBe('Each cell must be either an integer number or undefined');
+			}
+		});
 	});
 
 	describe('callback', () => {
@@ -223,6 +245,15 @@ describe('counting', () => {
 				expect(err instanceof ReferenceError).toBeTruthy();
 				const refError = err as ReferenceError;
 				expect(refError.message).toBe('Rows of the matrix must not be null and must be defined');
+			});
+		});
+
+		it('should validate each cell', () => {
+			const input: (number | undefined)[][] = [[Infinity]];
+			countGroups(input, (err) => {
+				expect(err instanceof TypeError).toBeTruthy();
+				const typeError = err as TypeError;
+				expect(typeError.message).toBe('Each cell must be either an integer number or undefined');
 			});
 		});
 	});
