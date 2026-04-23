@@ -1,24 +1,93 @@
-# lucidlink-assignment
+## Prerequisites
 
-## Semantic versioning for this package:
+- Node.js >= 20.12.0
+- Docker (required for integration tests via test containers)
+- Playwright browsers
 
-This package uses semantic versioning. To bump the version you need to add +semver:<patch|minor|major> to commit name.
-All PRs will be squashed so when prompted for a commit message add the semver to the commit message if not present. For example if the current version is 1.0.1 and you create a commit message "My perfect PR +semver:minor" it will bump the version to 1.1.0. If no +semver is provided the PR will be treated as a patch PR.
+1. Install dependencies
+   `npm install`
+2. Install Playwright browsers
+   `npx playwright install chromium`
 
-## Testing:
+### Available scripts
 
-There are two types of tests covering the package
+<!-- "test": "vitest",
+		"test:integration": "vitest */integration/*",
+		"test:unit": "vitest */unit/*",
+		"build": "tsdown",
+		"dev": "tsdown && node ./dist/index.js",
+		"lint": "eslint .",
+		"format": "prettier --write .",
+		"format:check": "prettier --check .",
+		"prepare": "husky" -->
 
-- Unit tests
-  The unit tests cover the basic functionality of the library. We use [vitest](https://vitest.dev/) as a testing framework. To run the unit tests run `npm run test:unit`
-- Integration tests
-  The integration tests help make sure that the package can be used both on the server with require and on the browser with ESM.
-  The tests use [Testcontainers](https://testcontainers.com/) to start an app that will either use the package or serve a page that uses the package. The browser test also uses playwright for assertions in the browser. If you haven't setup playwright locally you need a browser to point it to. The current way is to download a headless Chromium shell wtih `npx playwright install chromium`. On the CI pipeline since it's running in a container with no browser installed we also need to install the system dependencies for the browser with `npx playwright install-deps chromium`. To run the integration tests run `npm run test:intergration`
+- Run all tests
+  `npm run test`
+- Run integration tests
+  `npm run test:integration`
+- Run unit tests
+  `npm run test:unit`
+- Build
+  `npm run build`
+- Run the package locally (most likely not needed)
+  `npm run dev`
+- Lint
+  `npm run lint`
+- Format the code
+  `npm run format`
+- Check for code formatting
+  `npm run format:check`
+- Setup git hooks - automatically ran with `npm install`
+  `npm run prepare`
 
-## Git hooks
+### Examples
 
-We use [husky](https://typicode.github.io/husky/) for git hooks. Currently there's only one git hook which is triggered on pre-commit and uses [lint-staged](https://github.com/lint-staged/lint-staged). What it allows us to do is before each commit we run linting and formatting checks on the staged files only and if those checks fail the commit will fail and it will show us the error with which it failed either in the terminal or the git GUI we use.
+- Synchronous execution:
 
-##### Important note on Husky
+```
+import { countGroupsSync } from 'lucidlink-assignment';
 
-The pre-commit step uses the default node version provided by [nvm](https://www.nvmnode.com/) so make sure you have nvm installed.
+const grid = [
+  [1, undefined, 2],
+  [1, undefined, 2],
+  [undefined, undefined, 2],
+];
+
+countGroupsSync(grid); // 2
+```
+
+- Asynchronous with require
+
+```
+const { countGroups } = require('lucidlink-assignment/promises');
+
+const grid = [
+  [1, undefined, 2],
+  [1, undefined, 2],
+  [undefined, undefined, 2],
+];
+
+countGroups(grid).then(count => {
+  console.log(count); // 2
+});
+```
+
+- Asynchronous with callbacks
+
+```
+import { countGroups } from 'lucidlink-assignment';
+
+const grid = [
+  [1, undefined, 2],
+  [1, undefined, 2],
+  [undefined, undefined, 2],
+];
+
+countGroups(grid, (err, result) => {
+  if(err) {
+    console.log(err);
+  }
+
+  console.log(result); //2
+});
+```

@@ -2,6 +2,13 @@ import { CoordinateSet } from './CoordinateSet';
 import type { Coordinate } from './types';
 import { getNeighbors, validateCell, validateMatrix } from './util';
 
+/**
+ * This function counts orthogonally connected groups in a (number | undefined) matrix synchronously
+ * @param  input - the matrix (number | undefined)
+ * @returns - count of the groups
+ * @throws {TypeError}
+ * @throws {ReferenceError}
+ */
 export function countGroupsSync(input: (number | undefined)[][]): number {
 	validateMatrix(input);
 	if (input === undefined) {
@@ -52,6 +59,13 @@ function visitGroupSync(
 	}
 }
 
+/**
+ * This function counts orthogonally connected groups in a (number | undefined) matrix asynchronously with a callback
+ * @param input - the matrix (number | undefined)
+ * @param callback - the callback to execute, the second parameter to which is a number
+ * @throws {TypeError}
+ * @throws {ReferenceError}
+ */
 export function countGroups(
 	input: (number | undefined)[][],
 	callback: (error: Error | null, result?: number) => void
