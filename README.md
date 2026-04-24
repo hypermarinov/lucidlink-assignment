@@ -4,9 +4,9 @@
 - Docker (required for integration tests via test containers)
 - Playwright browsers
 
-2. Install dependencies
+1. Install dependencies
    `npm install`
-3. Install Playwright browsers
+2. Install Playwright browsers
    `npx playwright install chromium`
 
 ### Available scripts
