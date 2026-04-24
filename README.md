@@ -29,6 +29,8 @@
   `npm run format:check`
 - Setup git hooks - automatically ran with `npm install`
   `npm run prepare`
+- Lint the produced package 
+  ```npm run publint```
 
 ### Examples
 
