@@ -1,25 +1,16 @@
 ## Prerequisites
 
+- Nvm for node version management
 - Node.js >= 20.12.0
 - Docker (required for integration tests via test containers)
 - Playwright browsers
 
-1. Install dependencies
+2. Install dependencies
    `npm install`
-2. Install Playwright browsers
+3. Install Playwright browsers
    `npx playwright install chromium`
 
 ### Available scripts
-
-<!-- "test": "vitest",
-		"test:integration": "vitest */integration/*",
-		"test:unit": "vitest */unit/*",
-		"build": "tsdown",
-		"dev": "tsdown && node ./dist/index.js",
-		"lint": "eslint .",
-		"format": "prettier --write .",
-		"format:check": "prettier --check .",
-		"prepare": "husky" -->
 
 - Run all tests
   `npm run test`

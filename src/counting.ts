@@ -1,4 +1,4 @@
-import { CoordinateSet } from './CoordinateSet';
+import { CoordinateSet } from './coordinate-set';
 import type { Coordinate } from './types';
 import { getNeighbors, validateCell, validateMatrix } from './util';
 

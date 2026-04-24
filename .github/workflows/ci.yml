@@ -25,6 +25,9 @@ jobs:
       - name: Build
         run: npm run build
 
+      - name: Lint package.json
+        run: npm run publint
+
       - name: Unit Tests
         run: npm run test:unit
 

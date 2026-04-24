@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { CoordinateSet } from '../../src/CoordinateSet';
+import { CoordinateSet } from '../../src/coordinate-set';
 import type { Coordinate } from '../../src/types';
 
 describe('Coordinate Set', () => {
