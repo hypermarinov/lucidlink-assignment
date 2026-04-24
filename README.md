@@ -1,7 +1,6 @@
 ## Prerequisites
 
 - Nvm for node version management
-- Node.js >= 20.12.0
 - Docker (required for integration tests via test containers)
 - Playwright browsers
 
