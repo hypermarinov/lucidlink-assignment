@@ -22,11 +22,11 @@ jobs:
       - name: Lint
         run: npm run lint
 
-      - name: Lint package.json
-        run: npm run publint
-
       - name: Build
         run: npm run build
+        
+      - name: Lint package.json
+        run: npm run publint
 
       - name: Unit Tests
         run: npm run test:unit
